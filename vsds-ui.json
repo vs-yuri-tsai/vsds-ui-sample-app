@@ -1,0 +1,7 @@
+{
+  "language": "typescript",
+  "framework": "react19",
+  "style": "tailwind4",
+  "outputDir": "src/components/vsds",
+  "components": {}
+}
