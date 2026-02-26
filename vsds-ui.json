@@ -3,5 +3,11 @@
   "framework": "react19",
   "style": "tailwind4",
   "outputDir": "src/components/vsds",
-  "components": {}
+  "components": {
+    "Button": {
+      "version": "0.1.0",
+      "checksum": "sha256:c1f090a054398308323d16adfe20633218ece4d9e0abea6cc3336edbc460b575",
+      "installedAt": "2026-02-26"
+    }
+  }
 }

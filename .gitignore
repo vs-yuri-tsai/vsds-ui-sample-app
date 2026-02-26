@@ -140,3 +140,4 @@ vite.config.ts.timestamp-*
 
 # npm registry credentials
 .npmrc
+src/components/vsds/.vsds-originals/
