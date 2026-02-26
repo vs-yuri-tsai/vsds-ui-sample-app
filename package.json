@@ -15,7 +15,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@mvb-fe/vsds-ui": "0.1.0-alpha.0",
+    "@mvb-fe/vsds-ui": "0.1.0-alpha.2",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",

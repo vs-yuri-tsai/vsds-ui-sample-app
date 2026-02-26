@@ -19,8 +19,8 @@ importers:
         version: 18.3.1(react@18.3.1)
     devDependencies:
       '@mvb-fe/vsds-ui':
-        specifier: 0.1.0-alpha.0
-        version: 0.1.0-alpha.0(@mvb-fe/design-system@0.3.2-alpha.1)(radix-ui@1.4.3(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.19)(typescript@5.9.3)
+        specifier: 0.1.0-alpha.2
+        version: 0.1.0-alpha.2(@mvb-fe/design-system@0.3.2-alpha.1)(radix-ui@1.4.3(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.19)(typescript@5.9.3)
       '@types/react':
         specifier: ^18.3.5
         version: 18.3.28
@@ -313,8 +313,8 @@ packages:
   '@mvb-fe/design-system@0.3.2-alpha.1':
     resolution: {integrity: sha1-nlk7Zlzw8g6gwWjlAZTfLktiDx4=}
 
-  '@mvb-fe/vsds-ui@0.1.0-alpha.0':
-    resolution: {integrity: sha1-hMH39BRBHHmLaWGG5n51pqZvxmQ=}
+  '@mvb-fe/vsds-ui@0.1.0-alpha.2':
+    resolution: {integrity: sha1-zTn8YrUM6LmmygeXjn1T8Ww8ohU=}
     hasBin: true
     peerDependencies:
       '@mvb-fe/design-system': '*'
@@ -1999,7 +1999,7 @@ snapshots:
 
   '@mvb-fe/design-system@0.3.2-alpha.1': {}
 
-  '@mvb-fe/vsds-ui@0.1.0-alpha.0(@mvb-fe/design-system@0.3.2-alpha.1)(radix-ui@1.4.3(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.19)(typescript@5.9.3)':
+  '@mvb-fe/vsds-ui@0.1.0-alpha.2(@mvb-fe/design-system@0.3.2-alpha.1)(radix-ui@1.4.3(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.19)(typescript@5.9.3)':
     dependencies:
       '@mvb-fe/design-system': 0.3.2-alpha.1
       radix-ui: 1.4.3(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)

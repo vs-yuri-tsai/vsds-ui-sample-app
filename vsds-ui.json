@@ -5,8 +5,8 @@
   "outputDir": "src/components/vsds",
   "components": {
     "Button": {
-      "version": "0.1.0",
-      "checksum": "sha256:c1f090a054398308323d16adfe20633218ece4d9e0abea6cc3336edbc460b575",
+      "version": "0.2.0",
+      "checksum": "sha256:a2fb4dd5423a3b8e3ed3d86a42eaef57357e6b0e777912944c32ff4b0a7d9728",
       "installedAt": "2026-02-26"
     }
   }
