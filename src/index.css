@@ -1,3 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tailwind v4 */
+@import "tailwindcss";
+
+/* design-system: foundation tokens (--vsds-foun-*) */
+@import "@mvb-fe/design-system/foundation.css";
+
+/* design-system: default theme system tokens (--vsds-sys-*) + component tokens */
+@import "@mvb-fe/design-system/design-kit/default/style/main.css";
+
+/* design-system: Tailwind v4 @theme mappings */
+@import "@mvb-fe/design-system/design-kit/default/style/tailwind.css";
+
+/* Restore monospace utility using design-system code font */
+@layer utilities {
+  .font-mono {
+    font-family: var(--vsds-foun-font-family-code);
+  }
+}
