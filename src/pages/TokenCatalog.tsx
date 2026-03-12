@@ -22,20 +22,6 @@ function Tooltip({ text, children }: { text: string; children: React.ReactNode }
   )
 }
 
-// Read all CSS variable computed values once on mount
-function useComputedTokens(vars: string[]) {
-  const [values, setValues] = useState<Record<string, string>>({})
-  useEffect(() => {
-    const root = document.documentElement
-    const result: Record<string, string> = {}
-    vars.forEach(v => {
-      result[v] = getComputedStyle(root).getPropertyValue(v).trim()
-    })
-    setValues(result)
-  }, [])
-  return values
-}
-
 // ─── Sticky section nav ────────────────────────────────────────────────────
 
 const SECTIONS = [
@@ -376,7 +362,7 @@ export default function TokenCatalog() {
               { cssVar: '--vsds-sys-spacing-5xl', label: 'spacing-5xl', twClass: 'p-5xl' },
               { cssVar: '--vsds-sys-spacing-6xl', label: 'spacing-6xl', twClass: 'p-6xl' },
               { cssVar: '--vsds-sys-spacing-7xl', label: 'spacing-7xl', twClass: 'p-7xl' },
-            ].map(({ cssVar, label, twClass }) => (
+            ].map(({ cssVar, label }) => (
               <TokenRow
                 key={cssVar}
                 cssVar={cssVar}
@@ -475,8 +461,8 @@ export default function TokenCatalog() {
                 { cssVar: '--vsds-sys-opacity-lg', label: 'opacity-lg', cls: 'opacity-lg' },
                 { cssVar: '--vsds-sys-opacity-xl', label: 'opacity-xl', cls: 'opacity-xl' },
                 { cssVar: '--vsds-sys-opacity-2xl', label: 'opacity-2xl', cls: 'opacity-2xl' },
-              ].map(({ cssVar, label, cls }) => (
-                <OpacityCard key={cssVar} cssVar={cssVar} label={label} cls={cls} />
+              ].map(({ cssVar, label }) => (
+                <OpacityCard key={cssVar} cssVar={cssVar} label={label} />
               ))}
             </div>
           </div>
@@ -604,7 +590,7 @@ function ShadowCard({ cssVar, label, cls }: { cssVar: string; label: string; cls
   )
 }
 
-function OpacityCard({ cssVar, label, cls }: { cssVar: string; label: string; cls: string }) {
+function OpacityCard({ cssVar, label }: { cssVar: string; label: string }) {
   const [val, setVal] = useState('')
   useEffect(() => {
     setVal(getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim())
