@@ -34,9 +34,13 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
+        env:
+          AZURE_DEVOPS_NPM_TOKEN: ${{ secrets.AZURE_DEVOPS_NPM_TOKEN }}
         run: pnpm install --frozen-lockfile
 
       - name: Build
+        env:
+          AZURE_DEVOPS_NPM_TOKEN: ${{ secrets.AZURE_DEVOPS_NPM_TOKEN }}
         run: pnpm build
 
       - name: Upload artifact
