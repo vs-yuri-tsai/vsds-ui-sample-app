@@ -9,10 +9,3 @@
 
 /* design-system: Tailwind v4 @theme mappings */
 @import "@mvb-fe/design-system/design-kit/default/style/tailwind.css";
-
-/* Restore monospace utility using design-system code font */
-@layer utilities {
-  .font-mono {
-    font-family: var(--vsds-foun-font-family-code);
-  }
-}

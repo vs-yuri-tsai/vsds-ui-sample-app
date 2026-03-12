@@ -19,10 +19,10 @@ function NavTab({ label, active, onClick }: NavTabProps) {
     <button
       onClick={onClick}
       className={[
-        'px-4 py-2 text-body-sm font-medium rounded-md transition-colors',
+        'px-4 py-2 text-vsds-body-sm font-medium rounded-md transition-colors',
         active
-          ? 'bg-primary text-on-primary'
-          : 'text-text-200 hover:text-text-100 hover:bg-surface-300',
+          ? 'bg-vsds-primary text-vsds-on-primary'
+          : 'text-vsds-text-200 hover:text-vsds-text-100 hover:bg-vsds-surface-300',
       ].join(' ')}
     >
       {label}
@@ -41,15 +41,15 @@ function CommandSection({ step, command, description, detail }: CommandSectionPr
   return (
     <div>
       <div className="flex items-center gap-3 mb-2">
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary text-body-sm font-bold text-on-primary">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-vsds-primary text-vsds-body-sm font-bold text-vsds-on-primary">
           {step}
         </span>
-        <code className="rounded-md bg-surface-200 px-2.5 py-1 font-mono text-body-sm text-text-100">
+        <code className="rounded-md bg-vsds-surface-200 px-2.5 py-1 font-vsds-mono text-vsds-body-sm text-vsds-text-100">
           {command}
         </code>
       </div>
-      <p className="mb-1 font-medium text-text-100">{description}</p>
-      <p className="text-body-sm text-text-200">{detail}</p>
+      <p className="mb-1 font-medium text-vsds-text-100">{description}</p>
+      <p className="text-vsds-body-sm text-vsds-text-200">{detail}</p>
     </div>
   )
 }
@@ -62,17 +62,17 @@ interface GifCardProps {
 
 function GifCard({ src, label, badge }: GifCardProps) {
   const badgeColors = {
-    red: 'bg-danger text-danger-variant',
-    green: 'bg-success text-success-variant',
+    red: 'bg-vsds-danger text-vsds-danger-variant',
+    green: 'bg-vsds-success text-vsds-success-variant',
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-outline bg-surface-100 shadow-neutral-sm">
+    <div className="overflow-hidden rounded-xl border border-vsds-outline bg-vsds-surface-100 shadow-vsds-neutral-sm">
       <img src={src} alt={label} className="w-full" />
       <div className="flex items-center justify-between px-4 py-3">
-        <span className="text-body-sm text-text-200">{label}</span>
+        <span className="text-vsds-body-sm text-vsds-text-200">{label}</span>
         {badge && (
-          <span className={`rounded-full px-2.5 py-0.5 text-body-xs font-medium ${badgeColors[badge.color]}`}>
+          <span className={`rounded-full px-2.5 py-0.5 text-vsds-body-xs font-medium ${badgeColors[badge.color]}`}>
             {badge.text}
           </span>
         )}
@@ -86,11 +86,11 @@ function DemoPage() {
     <div className="mx-auto max-w-[64rem] px-6 py-16">
       {/* Header */}
       <div className="mb-14 text-center">
-        <h1 className="text-headline-xl font-bold tracking-tight text-text-100">vsds-ui CLI</h1>
-        <p className="mt-3 text-body-lg text-text-200">
+        <h1 className="text-vsds-headline-xl font-bold tracking-tight text-vsds-text-100">vsds-ui CLI</h1>
+        <p className="mt-3 text-vsds-body-lg text-vsds-text-200">
           Install and manage VSDS design system components in your project.
         </p>
-        <code className="mt-4 inline-block rounded-lg bg-surface-inverse-100 px-4 py-2 font-mono text-body-sm text-text-inverse-100">
+        <code className="mt-4 inline-block rounded-lg bg-vsds-surface-inverse-100 px-4 py-2 font-vsds-mono text-vsds-body-sm text-vsds-text-inverse-100">
           npx vsds-ui &lt;command&gt;
         </code>
       </div>
@@ -109,7 +109,7 @@ function DemoPage() {
           <GifCard src={initGif} label="vsds-ui init" />
         </section>
 
-        <hr className="border-outline" />
+        <hr className="border-vsds-outline" />
 
         {/* Apply */}
         <section className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
@@ -124,7 +124,7 @@ function DemoPage() {
           <GifCard src={applyGif} label="vsds-ui apply Button" />
         </section>
 
-        <hr className="border-outline" />
+        <hr className="border-vsds-outline" />
 
         {/* Migrate */}
         <section>
@@ -159,9 +159,9 @@ function App() {
   const [page, setPage] = useState<Page>('demo')
 
   return (
-    <div className="min-h-screen bg-surface-200">
+    <div className="min-h-screen bg-vsds-surface-200">
       {/* Nav */}
-      <nav className="sticky top-0 z-10 border-b border-outline bg-surface-100/80 backdrop-blur-sm">
+      <nav className="sticky top-0 z-10 border-b border-vsds-outline bg-vsds-surface-100/80 backdrop-blur-sm">
         <div className="mx-auto max-w-[64rem] px-6 py-2 flex items-center gap-2">
           <NavTab label="CLI Demo" active={page === 'demo'} onClick={() => setPage('demo')} />
           <NavTab label="Token 總覽" active={page === 'catalog'} onClick={() => setPage('catalog')} />

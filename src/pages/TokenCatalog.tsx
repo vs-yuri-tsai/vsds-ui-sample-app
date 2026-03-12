@@ -13,7 +13,7 @@ function Tooltip({ text, children }: { text: string; children: React.ReactNode }
       {children}
       {visible && text && (
         <div className="absolute bottom-full left-0 z-50 mb-1 pointer-events-none">
-          <div className="rounded-md bg-surface-inverse-100 px-2 py-1 text-body-xs text-text-inverse-100 whitespace-nowrap shadow-neutral-md max-w-[320px] break-all">
+          <div className="rounded-md bg-vsds-surface-inverse-100 px-2 py-1 text-vsds-body-xs text-vsds-text-inverse-100 whitespace-nowrap shadow-vsds-neutral-md max-w-[320px] break-all">
             {text}
           </div>
         </div>
@@ -38,17 +38,17 @@ const SECTIONS = [
 
 function SectionNav({ active }: { active: string }) {
   return (
-    <nav className="sticky top-[44px] z-10 bg-surface-100 border-b border-outline overflow-x-auto">
+    <nav className="sticky top-[44px] z-10 bg-vsds-surface-100 border-b border-vsds-outline overflow-x-auto">
       <div className="mx-auto max-w-[72rem] px-6 flex gap-1 py-1.5">
         {SECTIONS.map(s => (
           <a
             key={s.id}
             href={`#${s.id}`}
             className={[
-              'px-3 py-1 text-body-xs font-medium rounded whitespace-nowrap transition-colors',
+              'px-3 py-1 text-vsds-body-xs font-medium rounded whitespace-nowrap transition-colors',
               active === s.id
-                ? 'bg-primary text-on-primary'
-                : 'text-text-200 hover:text-text-100 hover:bg-surface-300',
+                ? 'bg-vsds-primary text-vsds-on-primary'
+                : 'text-vsds-text-200 hover:text-vsds-text-100 hover:bg-vsds-surface-300',
             ].join(' ')}
           >
             {s.label}
@@ -70,8 +70,8 @@ function CatalogSection({ id, title, subtitle, children }: {
   return (
     <section id={id} className="scroll-mt-24 space-y-4">
       <div>
-        <h2 className="text-title-xl font-bold text-text-100">{title}</h2>
-        {subtitle && <p className="text-body-sm text-text-200 mt-0.5">{subtitle}</p>}
+        <h2 className="text-vsds-title-xl font-bold text-vsds-text-100">{title}</h2>
+        {subtitle && <p className="text-vsds-body-sm text-vsds-text-200 mt-0.5">{subtitle}</p>}
       </div>
       {children}
     </section>
@@ -80,7 +80,7 @@ function CatalogSection({ id, title, subtitle, children }: {
 
 // ─── Color swatch ──────────────────────────────────────────────────────────
 
-function ColorSwatch({ cssVar, label, textClass }: { cssVar: string; label: string; textClass?: string }) {
+function ColorSwatch({ cssVar, label }: { cssVar: string; label: string }) {
   const [hex, setHex] = useState('')
   useEffect(() => {
     setHex(getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim())
@@ -88,18 +88,18 @@ function ColorSwatch({ cssVar, label, textClass }: { cssVar: string; label: stri
   return (
     <div className="flex flex-col gap-1">
       <div
-        className="h-10 rounded-lg border border-outline w-full"
+        className="h-10 rounded-lg border border-vsds-outline w-full"
         style={{ background: `var(${cssVar})` }}
       />
       <div>
         <Tooltip text={label}>
-          <p className={`text-label-xs font-medium truncate ${textClass ?? 'text-text-100'}`}>{label}</p>
+          <p className="text-vsds-label-xs font-medium truncate text-vsds-text-100">{label}</p>
         </Tooltip>
         <Tooltip text={cssVar}>
-          <p className="font-mono text-body-xs text-text-200 truncate">{cssVar}</p>
+          <p className="font-vsds-mono text-vsds-body-xs text-vsds-text-200 truncate">{cssVar}</p>
         </Tooltip>
         <Tooltip text={hex}>
-          <p className="font-mono text-body-xs text-text-300 truncate">{hex}</p>
+          <p className="font-vsds-mono text-vsds-body-xs text-vsds-text-300 truncate">{hex}</p>
         </Tooltip>
       </div>
     </div>
@@ -108,8 +108,8 @@ function ColorSwatch({ cssVar, label, textClass }: { cssVar: string; label: stri
 
 function ColorGroup({ title, tokens }: { title: string; tokens: { cssVar: string; label: string }[] }) {
   return (
-    <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm space-y-3">
-      <p className="text-label-md font-medium text-text-200">{title}</p>
+    <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm space-y-3">
+      <p className="text-vsds-label-md font-medium text-vsds-text-200">{title}</p>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {tokens.map(t => <ColorSwatch key={t.cssVar} {...t} />)}
       </div>
@@ -129,13 +129,13 @@ function TokenRow({ cssVar, label, preview }: {
     setVal(getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim())
   }, [cssVar])
   return (
-    <div className="flex items-center gap-4 py-2 border-b border-outline last:border-0">
+    <div className="flex items-center gap-4 py-2 border-b border-vsds-outline last:border-0">
       <div className="w-32 shrink-0">{preview}</div>
       <div className="flex-1 min-w-0">
-        <p className="text-body-sm font-medium text-text-100">{label}</p>
-        <p className="font-mono text-body-xs text-text-200">{cssVar}</p>
+        <p className="text-vsds-body-sm font-medium text-vsds-text-100">{label}</p>
+        <p className="font-vsds-mono text-vsds-body-xs text-vsds-text-200">{cssVar}</p>
       </div>
-      <p className="font-mono text-body-xs text-text-300 text-right shrink-0">{val}</p>
+      <p className="font-vsds-mono text-vsds-body-xs text-vsds-text-300 text-right shrink-0">{val}</p>
     </div>
   )
 }
@@ -163,13 +163,13 @@ export default function TokenCatalog() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-surface-200" ref={containerRef}>
+    <div className="min-h-screen bg-vsds-surface-200" ref={containerRef}>
       <SectionNav active={activeSection} />
 
       <div className="mx-auto max-w-[72rem] px-6 py-10 space-y-16">
 
         {/* ── 色彩 ──────────────────────────────────────────── */}
-        <CatalogSection id="color" title="色彩" subtitle="來源：--vsds-sys-color-* (design-kit/default/style/main.css)">
+        <CatalogSection id="color" title="色彩" subtitle="來源：--vsds-sys-color-* (main.css) · Tailwind class: bg-vsds-{name} / text-vsds-{name}">
           <ColorGroup title="品牌色 Brand" tokens={[
             { cssVar: '--vsds-sys-color-primary', label: 'primary' },
             { cssVar: '--vsds-sys-color-primary-variant', label: 'primary-variant' },
@@ -277,68 +277,68 @@ export default function TokenCatalog() {
         {/* ── 字型 ──────────────────────────────────────────── */}
         <CatalogSection id="typography" title="字型" subtitle="來源：--vsds-sys-font-* (main.css) · --vsds-foun-font-* (foundation.css)">
           {/* Font families */}
-          <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm space-y-3">
-            <p className="text-label-md font-medium text-text-200">字型家族 Font Family</p>
+          <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm space-y-3">
+            <p className="text-vsds-label-md font-medium text-vsds-text-200">字型家族 Font Family · Tailwind class: font-vsds-sans / font-vsds-mono</p>
             {[
-              { cssVar: '--vsds-foun-font-family-sans', label: 'sans (Latin)', sample: 'The quick brown fox' },
-              { cssVar: '--vsds-foun-font-family-sans-zhTW', label: 'sans zhTW（繁中）', sample: '設計系統排版範例' },
-              { cssVar: '--vsds-foun-font-family-code', label: 'code / mono', sample: 'const token = "value"' },
-            ].map(({ cssVar, label, sample }) => (
-              <div key={cssVar} className="flex items-center gap-4 py-2 border-b border-outline last:border-0">
-                <p className="text-title-md" style={{ fontFamily: `var(${cssVar})` }}>{sample}</p>
+              { cssVar: '--vsds-foun-font-family-sans', label: 'sans (Latin)', cls: 'font-vsds-sans', sample: 'The quick brown fox' },
+              { cssVar: '--vsds-foun-font-family-sans-zhTW', label: 'sans zhTW（繁中）', cls: '', sample: '設計系統排版範例' },
+              { cssVar: '--vsds-foun-font-family-code', label: 'code / mono', cls: 'font-vsds-mono', sample: 'const token = "value"' },
+            ].map(({ cssVar, label, cls, sample }) => (
+              <div key={cssVar} className="flex items-center gap-4 py-2 border-b border-vsds-outline last:border-0">
+                <p className={`text-vsds-title-md ${cls}`} style={cls ? undefined : { fontFamily: `var(${cssVar})` }}>{sample}</p>
                 <div className="ml-auto text-right shrink-0">
-                  <p className="text-body-sm font-medium text-text-100">{label}</p>
-                  <p className="font-mono text-body-xs text-text-200">{cssVar}</p>
+                  <p className="text-vsds-body-sm font-medium text-vsds-text-100">{label}</p>
+                  <p className="font-vsds-mono text-vsds-body-xs text-vsds-text-200">{cssVar}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Font sizes */}
-          <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm space-y-1">
-            <p className="text-label-md font-medium text-text-200 mb-3">字型大小 Font Size</p>
+          <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm space-y-1">
+            <p className="text-vsds-label-md font-medium text-vsds-text-200 mb-3">字型大小 Font Size · Tailwind class: text-vsds-[name]</p>
             {[
-              { cssVar: '--vsds-sys-font-size-display-2xl', label: 'display-2xl', cls: 'text-display-2xl' },
-              { cssVar: '--vsds-sys-font-size-display-xl', label: 'display-xl', cls: 'text-display-xl' },
-              { cssVar: '--vsds-sys-font-size-display-lg', label: 'display-lg', cls: 'text-display-lg' },
-              { cssVar: '--vsds-sys-font-size-display-md', label: 'display-md', cls: 'text-display-md' },
-              { cssVar: '--vsds-sys-font-size-display-sm', label: 'display-sm', cls: 'text-display-sm' },
-              { cssVar: '--vsds-sys-font-size-headline-2xl', label: 'headline-2xl', cls: 'text-headline-2xl' },
-              { cssVar: '--vsds-sys-font-size-headline-xl', label: 'headline-xl', cls: 'text-headline-xl' },
-              { cssVar: '--vsds-sys-font-size-headline-lg', label: 'headline-lg', cls: 'text-headline-lg' },
-              { cssVar: '--vsds-sys-font-size-headline-md', label: 'headline-md', cls: 'text-headline-md' },
-              { cssVar: '--vsds-sys-font-size-headline-sm', label: 'headline-sm', cls: 'text-headline-sm' },
-              { cssVar: '--vsds-sys-font-size-headline-xs', label: 'headline-xs', cls: 'text-headline-xs' },
-              { cssVar: '--vsds-sys-font-size-title-xl', label: 'title-xl', cls: 'text-title-xl' },
-              { cssVar: '--vsds-sys-font-size-title-lg', label: 'title-lg', cls: 'text-title-lg' },
-              { cssVar: '--vsds-sys-font-size-title-md', label: 'title-md', cls: 'text-title-md' },
-              { cssVar: '--vsds-sys-font-size-title-sm', label: 'title-sm', cls: 'text-title-sm' },
-              { cssVar: '--vsds-sys-font-size-title-xs', label: 'title-xs', cls: 'text-title-xs' },
-              { cssVar: '--vsds-sys-font-size-body-lg', label: 'body-lg', cls: 'text-body-lg' },
-              { cssVar: '--vsds-sys-font-size-body-md', label: 'body-md', cls: 'text-body-md' },
-              { cssVar: '--vsds-sys-font-size-body-sm', label: 'body-sm', cls: 'text-body-sm' },
-              { cssVar: '--vsds-sys-font-size-body-xs', label: 'body-xs', cls: 'text-body-xs' },
-              { cssVar: '--vsds-sys-font-size-label-lg', label: 'label-lg', cls: 'text-label-lg' },
-              { cssVar: '--vsds-sys-font-size-label-md', label: 'label-md', cls: 'text-label-md' },
-              { cssVar: '--vsds-sys-font-size-label-sm', label: 'label-sm', cls: 'text-label-sm' },
-              { cssVar: '--vsds-sys-font-size-label-xs', label: 'label-xs', cls: 'text-label-xs' },
+              { cssVar: '--vsds-sys-font-size-display-2xl', label: 'display-2xl', cls: 'text-vsds-display-2xl' },
+              { cssVar: '--vsds-sys-font-size-display-xl', label: 'display-xl', cls: 'text-vsds-display-xl' },
+              { cssVar: '--vsds-sys-font-size-display-lg', label: 'display-lg', cls: 'text-vsds-display-lg' },
+              { cssVar: '--vsds-sys-font-size-display-md', label: 'display-md', cls: 'text-vsds-display-md' },
+              { cssVar: '--vsds-sys-font-size-display-sm', label: 'display-sm', cls: 'text-vsds-display-sm' },
+              { cssVar: '--vsds-sys-font-size-headline-2xl', label: 'headline-2xl', cls: 'text-vsds-headline-2xl' },
+              { cssVar: '--vsds-sys-font-size-headline-xl', label: 'headline-xl', cls: 'text-vsds-headline-xl' },
+              { cssVar: '--vsds-sys-font-size-headline-lg', label: 'headline-lg', cls: 'text-vsds-headline-lg' },
+              { cssVar: '--vsds-sys-font-size-headline-md', label: 'headline-md', cls: 'text-vsds-headline-md' },
+              { cssVar: '--vsds-sys-font-size-headline-sm', label: 'headline-sm', cls: 'text-vsds-headline-sm' },
+              { cssVar: '--vsds-sys-font-size-headline-xs', label: 'headline-xs', cls: 'text-vsds-headline-xs' },
+              { cssVar: '--vsds-sys-font-size-title-xl', label: 'title-xl', cls: 'text-vsds-title-xl' },
+              { cssVar: '--vsds-sys-font-size-title-lg', label: 'title-lg', cls: 'text-vsds-title-lg' },
+              { cssVar: '--vsds-sys-font-size-title-md', label: 'title-md', cls: 'text-vsds-title-md' },
+              { cssVar: '--vsds-sys-font-size-title-sm', label: 'title-sm', cls: 'text-vsds-title-sm' },
+              { cssVar: '--vsds-sys-font-size-title-xs', label: 'title-xs', cls: 'text-vsds-title-xs' },
+              { cssVar: '--vsds-sys-font-size-body-lg', label: 'body-lg', cls: 'text-vsds-body-lg' },
+              { cssVar: '--vsds-sys-font-size-body-md', label: 'body-md', cls: 'text-vsds-body-md' },
+              { cssVar: '--vsds-sys-font-size-body-sm', label: 'body-sm', cls: 'text-vsds-body-sm' },
+              { cssVar: '--vsds-sys-font-size-body-xs', label: 'body-xs', cls: 'text-vsds-body-xs' },
+              { cssVar: '--vsds-sys-font-size-label-lg', label: 'label-lg', cls: 'text-vsds-label-lg' },
+              { cssVar: '--vsds-sys-font-size-label-md', label: 'label-md', cls: 'text-vsds-label-md' },
+              { cssVar: '--vsds-sys-font-size-label-sm', label: 'label-sm', cls: 'text-vsds-label-sm' },
+              { cssVar: '--vsds-sys-font-size-label-xs', label: 'label-xs', cls: 'text-vsds-label-xs' },
             ].map(({ cssVar, label, cls }) => (
               <FontSizeRow key={cssVar} cssVar={cssVar} label={label} cls={cls} />
             ))}
           </div>
 
           {/* Font weights */}
-          <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm">
-            <p className="text-label-md font-medium text-text-200 mb-3">字重 Font Weight</p>
+          <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm">
+            <p className="text-vsds-label-md font-medium text-vsds-text-200 mb-3">字重 Font Weight · Tailwind class: font-vsds-[name]</p>
             <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
               {[
-                { cssVar: '--vsds-sys-font-weight-thin', label: 'thin', cls: 'font-thin' },
-                { cssVar: '--vsds-sys-font-weight-light', label: 'light', cls: 'font-light' },
-                { cssVar: '--vsds-sys-font-weight-regular', label: 'regular', cls: 'font-regular' },
-                { cssVar: '--vsds-sys-font-weight-medium', label: 'medium', cls: 'font-medium' },
-                { cssVar: '--vsds-sys-font-weight-semi-bold', label: 'semi-bold', cls: 'font-semi-bold' },
-                { cssVar: '--vsds-sys-font-weight-bold', label: 'bold', cls: 'font-bold' },
-                { cssVar: '--vsds-sys-font-weight-black', label: 'black', cls: 'font-black' },
+                { cssVar: '--vsds-sys-font-weight-thin', label: 'thin', cls: 'font-vsds-thin' },
+                { cssVar: '--vsds-sys-font-weight-light', label: 'light', cls: 'font-vsds-light' },
+                { cssVar: '--vsds-sys-font-weight-regular', label: 'regular', cls: 'font-vsds-regular' },
+                { cssVar: '--vsds-sys-font-weight-medium', label: 'medium', cls: 'font-vsds-medium' },
+                { cssVar: '--vsds-sys-font-weight-semi-bold', label: 'semi-bold', cls: 'font-vsds-semi-bold' },
+                { cssVar: '--vsds-sys-font-weight-bold', label: 'bold', cls: 'font-vsds-bold' },
+                { cssVar: '--vsds-sys-font-weight-black', label: 'black', cls: 'font-vsds-black' },
               ].map(({ cssVar, label, cls }) => (
                 <FontWeightCard key={cssVar} cssVar={cssVar} label={label} cls={cls} />
               ))}
@@ -347,21 +347,21 @@ export default function TokenCatalog() {
         </CatalogSection>
 
         {/* ── 間距 ──────────────────────────────────────────── */}
-        <CatalogSection id="spacing" title="間距" subtitle="來源：--vsds-sys-spacing-* (main.css)">
-          <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm space-y-2">
+        <CatalogSection id="spacing" title="間距" subtitle="來源：--vsds-sys-spacing-* (main.css) · Tailwind class: p-vsds-{name} / m-vsds-{name} / gap-vsds-{name}">
+          <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm space-y-2">
             {[
-              { cssVar: '--vsds-sys-spacing-2xs', label: 'spacing-2xs', twClass: 'p-2xs' },
-              { cssVar: '--vsds-sys-spacing-xs', label: 'spacing-xs', twClass: 'p-xs' },
-              { cssVar: '--vsds-sys-spacing-sm', label: 'spacing-sm', twClass: 'p-sm' },
-              { cssVar: '--vsds-sys-spacing-md', label: 'spacing-md', twClass: 'p-md' },
-              { cssVar: '--vsds-sys-spacing-lg', label: 'spacing-lg', twClass: 'p-lg' },
-              { cssVar: '--vsds-sys-spacing-xl', label: 'spacing-xl', twClass: 'p-xl' },
-              { cssVar: '--vsds-sys-spacing-2xl', label: 'spacing-2xl', twClass: 'p-2xl' },
-              { cssVar: '--vsds-sys-spacing-3xl', label: 'spacing-3xl', twClass: 'p-3xl' },
-              { cssVar: '--vsds-sys-spacing-4xl', label: 'spacing-4xl', twClass: 'p-4xl' },
-              { cssVar: '--vsds-sys-spacing-5xl', label: 'spacing-5xl', twClass: 'p-5xl' },
-              { cssVar: '--vsds-sys-spacing-6xl', label: 'spacing-6xl', twClass: 'p-6xl' },
-              { cssVar: '--vsds-sys-spacing-7xl', label: 'spacing-7xl', twClass: 'p-7xl' },
+              { cssVar: '--vsds-sys-spacing-2xs', label: 'spacing-2xs' },
+              { cssVar: '--vsds-sys-spacing-xs', label: 'spacing-xs' },
+              { cssVar: '--vsds-sys-spacing-sm', label: 'spacing-sm' },
+              { cssVar: '--vsds-sys-spacing-md', label: 'spacing-md' },
+              { cssVar: '--vsds-sys-spacing-lg', label: 'spacing-lg' },
+              { cssVar: '--vsds-sys-spacing-xl', label: 'spacing-xl' },
+              { cssVar: '--vsds-sys-spacing-2xl', label: 'spacing-2xl' },
+              { cssVar: '--vsds-sys-spacing-3xl', label: 'spacing-3xl' },
+              { cssVar: '--vsds-sys-spacing-4xl', label: 'spacing-4xl' },
+              { cssVar: '--vsds-sys-spacing-5xl', label: 'spacing-5xl' },
+              { cssVar: '--vsds-sys-spacing-6xl', label: 'spacing-6xl' },
+              { cssVar: '--vsds-sys-spacing-7xl', label: 'spacing-7xl' },
             ].map(({ cssVar, label }) => (
               <TokenRow
                 key={cssVar}
@@ -370,7 +370,7 @@ export default function TokenCatalog() {
                 preview={
                   <div className="flex items-center">
                     <div
-                      className="h-4 rounded bg-primary shrink-0"
+                      className="h-4 rounded bg-vsds-primary shrink-0"
                       style={{ width: `var(${cssVar})`, maxWidth: '100%', minWidth: 2 }}
                     />
                   </div>
@@ -381,19 +381,19 @@ export default function TokenCatalog() {
         </CatalogSection>
 
         {/* ── 圓角 ──────────────────────────────────────────── */}
-        <CatalogSection id="radius" title="圓角" subtitle="來源：--vsds-sys-radius-* (main.css) · Tailwind class: rounded-{name}">
-          <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm">
+        <CatalogSection id="radius" title="圓角" subtitle="來源：--vsds-sys-radius-* (main.css) · Tailwind class: rounded-vsds-{name}">
+          <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm">
             <div className="grid grid-cols-3 gap-4 md:grid-cols-5">
               {[
-                { cssVar: '--vsds-sys-radius-none', label: 'none', cls: 'rounded-none' },
-                { cssVar: '--vsds-sys-radius-sm', label: 'sm', cls: 'rounded-sm' },
-                { cssVar: '--vsds-sys-radius-md', label: 'md', cls: 'rounded-md' },
-                { cssVar: '--vsds-sys-radius-lg', label: 'lg', cls: 'rounded-lg' },
-                { cssVar: '--vsds-sys-radius-xl', label: 'xl', cls: 'rounded-xl' },
-                { cssVar: '--vsds-sys-radius-2xl', label: '2xl', cls: 'rounded-2xl' },
-                { cssVar: '--vsds-sys-radius-3xl', label: '3xl', cls: 'rounded-3xl' },
-                { cssVar: '--vsds-sys-radius-4xl', label: '4xl', cls: 'rounded-4xl' },
-                { cssVar: '--vsds-sys-radius-full', label: 'full', cls: 'rounded-full' },
+                { cssVar: '--vsds-sys-radius-none', label: 'none', cls: 'rounded-vsds-none' },
+                { cssVar: '--vsds-sys-radius-sm', label: 'sm', cls: 'rounded-vsds-sm' },
+                { cssVar: '--vsds-sys-radius-md', label: 'md', cls: 'rounded-vsds-md' },
+                { cssVar: '--vsds-sys-radius-lg', label: 'lg', cls: 'rounded-vsds-lg' },
+                { cssVar: '--vsds-sys-radius-xl', label: 'xl', cls: 'rounded-vsds-xl' },
+                { cssVar: '--vsds-sys-radius-2xl', label: '2xl', cls: 'rounded-vsds-2xl' },
+                { cssVar: '--vsds-sys-radius-3xl', label: '3xl', cls: 'rounded-vsds-3xl' },
+                { cssVar: '--vsds-sys-radius-4xl', label: '4xl', cls: 'rounded-vsds-4xl' },
+                { cssVar: '--vsds-sys-radius-full', label: 'full', cls: 'rounded-vsds-full' },
               ].map(({ cssVar, label, cls }) => (
                 <RadiusCard key={cssVar} cssVar={cssVar} label={label} cls={cls} />
               ))}
@@ -402,22 +402,22 @@ export default function TokenCatalog() {
         </CatalogSection>
 
         {/* ── 陰影 ──────────────────────────────────────────── */}
-        <CatalogSection id="shadow" title="陰影" subtitle="來源：--vsds-sys-shadow-* (main.css) · Tailwind class: shadow-{name}">
-          <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm">
+        <CatalogSection id="shadow" title="陰影" subtitle="來源：--vsds-sys-shadow-* (main.css) · Tailwind class: shadow-vsds-{name}">
+          <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm">
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               {[
-                { cssVar: '--vsds-sys-shadow-neutral-sm', label: 'neutral-sm', cls: 'shadow-neutral-sm' },
-                { cssVar: '--vsds-sys-shadow-neutral-md', label: 'neutral-md', cls: 'shadow-neutral-md' },
-                { cssVar: '--vsds-sys-shadow-neutral-lg', label: 'neutral-lg', cls: 'shadow-neutral-lg' },
-                { cssVar: '--vsds-sys-shadow-neutral-xl', label: 'neutral-xl', cls: 'shadow-neutral-xl' },
-                { cssVar: '--vsds-sys-shadow-neutral-inverse-sm', label: 'neutral-inverse-sm', cls: 'shadow-neutral-inverse-sm' },
-                { cssVar: '--vsds-sys-shadow-neutral-inverse-md', label: 'neutral-inverse-md', cls: 'shadow-neutral-inverse-md' },
-                { cssVar: '--vsds-sys-shadow-primary-sm', label: 'primary-sm', cls: 'shadow-primary-sm' },
-                { cssVar: '--vsds-sys-shadow-primary-md', label: 'primary-md', cls: 'shadow-primary-md' },
-                { cssVar: '--vsds-sys-shadow-primary-lg', label: 'primary-lg', cls: 'shadow-primary-lg' },
-                { cssVar: '--vsds-sys-shadow-primary-xl', label: 'primary-xl', cls: 'shadow-primary-xl' },
-                { cssVar: '--vsds-sys-shadow-secondary-sm', label: 'secondary-sm', cls: 'shadow-secondary-sm' },
-                { cssVar: '--vsds-sys-shadow-secondary-md', label: 'secondary-md', cls: 'shadow-secondary-md' },
+                { cssVar: '--vsds-sys-shadow-neutral-sm', label: 'neutral-sm', cls: 'shadow-vsds-neutral-sm' },
+                { cssVar: '--vsds-sys-shadow-neutral-md', label: 'neutral-md', cls: 'shadow-vsds-neutral-md' },
+                { cssVar: '--vsds-sys-shadow-neutral-lg', label: 'neutral-lg', cls: 'shadow-vsds-neutral-lg' },
+                { cssVar: '--vsds-sys-shadow-neutral-xl', label: 'neutral-xl', cls: 'shadow-vsds-neutral-xl' },
+                { cssVar: '--vsds-sys-shadow-neutral-inverse-sm', label: 'neutral-inverse-sm', cls: 'shadow-vsds-neutral-inverse-sm' },
+                { cssVar: '--vsds-sys-shadow-neutral-inverse-md', label: 'neutral-inverse-md', cls: 'shadow-vsds-neutral-inverse-md' },
+                { cssVar: '--vsds-sys-shadow-primary-sm', label: 'primary-sm', cls: 'shadow-vsds-primary-sm' },
+                { cssVar: '--vsds-sys-shadow-primary-md', label: 'primary-md', cls: 'shadow-vsds-primary-md' },
+                { cssVar: '--vsds-sys-shadow-primary-lg', label: 'primary-lg', cls: 'shadow-vsds-primary-lg' },
+                { cssVar: '--vsds-sys-shadow-primary-xl', label: 'primary-xl', cls: 'shadow-vsds-primary-xl' },
+                { cssVar: '--vsds-sys-shadow-secondary-sm', label: 'secondary-sm', cls: 'shadow-vsds-secondary-sm' },
+                { cssVar: '--vsds-sys-shadow-secondary-md', label: 'secondary-md', cls: 'shadow-vsds-secondary-md' },
               ].map(({ cssVar, label, cls }) => (
                 <ShadowCard key={cssVar} cssVar={cssVar} label={label} cls={cls} />
               ))}
@@ -426,13 +426,13 @@ export default function TokenCatalog() {
         </CatalogSection>
 
         {/* ── 邊框 ──────────────────────────────────────────── */}
-        <CatalogSection id="border" title="邊框寬度" subtitle="來源：--vsds-sys-border-* (main.css) · Tailwind class: border-{name}">
-          <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm space-y-2">
+        <CatalogSection id="border" title="邊框寬度" subtitle="來源：--vsds-sys-border-* (main.css) · Tailwind class: border-vsds-{name}">
+          <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm space-y-2">
             {[
-              { cssVar: '--vsds-sys-border-sm', label: 'border-sm', cls: 'border-sm' },
-              { cssVar: '--vsds-sys-border-md', label: 'border-md', cls: 'border-md' },
-              { cssVar: '--vsds-sys-border-lg', label: 'border-lg', cls: 'border-lg' },
-              { cssVar: '--vsds-sys-border-xl', label: 'border-xl', cls: 'border-xl' },
+              { cssVar: '--vsds-sys-border-sm', label: 'border-sm' },
+              { cssVar: '--vsds-sys-border-md', label: 'border-md' },
+              { cssVar: '--vsds-sys-border-lg', label: 'border-lg' },
+              { cssVar: '--vsds-sys-border-xl', label: 'border-xl' },
             ].map(({ cssVar, label }) => (
               <TokenRow
                 key={cssVar}
@@ -440,7 +440,7 @@ export default function TokenCatalog() {
                 label={label}
                 preview={
                   <div
-                    className="border-solid border-primary rounded-sm"
+                    className="border-solid border-vsds-primary rounded-sm"
                     style={{ borderWidth: `var(${cssVar})` }}
                   >
                     <div className="h-5 w-28 rounded-sm" />
@@ -452,15 +452,15 @@ export default function TokenCatalog() {
         </CatalogSection>
 
         {/* ── 不透明度 ────────────────────────────────────────── */}
-        <CatalogSection id="opacity" title="不透明度" subtitle="來源：--vsds-sys-opacity-* (main.css) · Tailwind class: opacity-{name}">
-          <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm">
+        <CatalogSection id="opacity" title="不透明度" subtitle="來源：--vsds-sys-opacity-* (main.css) · Tailwind class: opacity-vsds-{name}">
+          <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm">
             <div className="grid grid-cols-3 gap-4 md:grid-cols-5">
               {[
-                { cssVar: '--vsds-sys-opacity-sm', label: 'opacity-sm', cls: 'opacity-sm' },
-                { cssVar: '--vsds-sys-opacity-md', label: 'opacity-md', cls: 'opacity-md' },
-                { cssVar: '--vsds-sys-opacity-lg', label: 'opacity-lg', cls: 'opacity-lg' },
-                { cssVar: '--vsds-sys-opacity-xl', label: 'opacity-xl', cls: 'opacity-xl' },
-                { cssVar: '--vsds-sys-opacity-2xl', label: 'opacity-2xl', cls: 'opacity-2xl' },
+                { cssVar: '--vsds-sys-opacity-sm', label: 'opacity-sm' },
+                { cssVar: '--vsds-sys-opacity-md', label: 'opacity-md' },
+                { cssVar: '--vsds-sys-opacity-lg', label: 'opacity-lg' },
+                { cssVar: '--vsds-sys-opacity-xl', label: 'opacity-xl' },
+                { cssVar: '--vsds-sys-opacity-2xl', label: 'opacity-2xl' },
               ].map(({ cssVar, label }) => (
                 <OpacityCard key={cssVar} cssVar={cssVar} label={label} />
               ))}
@@ -469,8 +469,8 @@ export default function TokenCatalog() {
         </CatalogSection>
 
         {/* ── 圖示尺寸 ────────────────────────────────────────── */}
-        <CatalogSection id="icon" title="圖示尺寸" subtitle="來源：--vsds-sys-icon-size-* (main.css) · Tailwind class: size-icon-{name}">
-          <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm">
+        <CatalogSection id="icon" title="圖示尺寸" subtitle="來源：--vsds-sys-icon-size-* (main.css) · Tailwind class: size-vsds-icon-{name} / w-vsds-icon-{name}">
+          <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm">
             <div className="flex items-end gap-6 flex-wrap">
               {[
                 { cssVar: '--vsds-sys-icon-size-xs', label: 'xs' },
@@ -489,10 +489,10 @@ export default function TokenCatalog() {
 
         {/* ── JS Tokens ───────────────────────────────────────── */}
         <CatalogSection id="js" title="JS Tokens" subtitle="來源：design-kit/{theme}/style/main.js · export { tokens }">
-          <div className="rounded-xl border border-outline bg-surface-100 p-4 shadow-neutral-sm space-y-3">
-            <p className="text-label-md font-medium text-text-200">匯入方式</p>
-            <pre className="rounded-md bg-surface-inverse-100 px-4 py-3 overflow-x-auto">
-              <code className="font-mono text-body-sm text-text-inverse-100">{`import { tokens } from '@mvb-fe/design-system/design-kit/default/style/main.js'`}</code>
+          <div className="rounded-xl border border-vsds-outline bg-vsds-surface-100 p-4 shadow-vsds-neutral-sm space-y-3">
+            <p className="text-vsds-label-md font-medium text-vsds-text-200">匯入方式</p>
+            <pre className="rounded-md bg-vsds-surface-inverse-100 px-4 py-3 overflow-x-auto">
+              <code className="font-vsds-mono text-vsds-body-sm text-vsds-text-inverse-100">{`import { tokens } from '@mvb-fe/design-system/design-kit/default/style/main.js'`}</code>
             </pre>
           </div>
 
@@ -511,13 +511,13 @@ export default function TokenCatalog() {
               { key: 'iconSize', label: '圖示尺寸', desc: 'xs, sm, md, lg, xl, 2xl, 3xl' },
               { key: 'breakpoint', label: '斷點', desc: 'sm (414px), md (768px), lg (1024px), xl (1280px)' },
             ].map(({ key, label, desc }) => (
-              <div key={key} className="rounded-lg border border-outline bg-surface-200 p-3 space-y-1">
+              <div key={key} className="rounded-lg border border-vsds-outline bg-vsds-surface-200 p-3 space-y-1">
                 <div className="flex items-center gap-2">
-                  <span className="inline-block rounded bg-primary px-2 py-0.5 font-mono text-body-xs text-on-primary">{key}</span>
-                  <span className="text-body-sm font-medium text-text-100">{label}</span>
+                  <span className="inline-block rounded bg-vsds-primary px-2 py-0.5 font-vsds-mono text-vsds-body-xs text-vsds-on-primary">{key}</span>
+                  <span className="text-vsds-body-sm font-medium text-vsds-text-100">{label}</span>
                 </div>
-                <p className="text-body-xs text-text-200">{desc}</p>
-                <p className="font-mono text-body-xs text-text-300">tokens.{key}.*</p>
+                <p className="text-vsds-body-xs text-vsds-text-200">{desc}</p>
+                <p className="font-vsds-mono text-vsds-body-xs text-vsds-text-300">tokens.{key}.*</p>
               </div>
             ))}
           </div>
@@ -536,11 +536,11 @@ function FontSizeRow({ cssVar, label, cls }: { cssVar: string; label: string; cl
     setVal(getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim())
   }, [cssVar])
   return (
-    <div className="flex items-baseline gap-4 py-1.5 border-b border-outline last:border-0">
-      <span className={`${cls} text-text-100 leading-none shrink-0`}>Ag</span>
-      <span className="text-body-sm text-text-200 shrink-0 w-32">{label}</span>
-      <span className="font-mono text-body-xs text-text-200 shrink-0">{cssVar}</span>
-      <span className="font-mono text-body-xs text-text-300 ml-auto shrink-0">{val}</span>
+    <div className="flex items-baseline gap-4 py-1.5 border-b border-vsds-outline last:border-0">
+      <span className={`${cls} text-vsds-text-100 leading-none shrink-0`}>Ag</span>
+      <span className="text-vsds-body-sm text-vsds-text-200 shrink-0 w-32">{label}</span>
+      <span className="font-vsds-mono text-vsds-body-xs text-vsds-text-200 shrink-0">{cssVar}</span>
+      <span className="font-vsds-mono text-vsds-body-xs text-vsds-text-300 ml-auto shrink-0">{val}</span>
     </div>
   )
 }
@@ -551,10 +551,10 @@ function FontWeightCard({ cssVar, label, cls }: { cssVar: string; label: string;
     setVal(getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim())
   }, [cssVar])
   return (
-    <div className="rounded-lg border border-outline p-3 text-center space-y-1">
-      <p className={`text-title-lg text-text-100 ${cls}`}>Ag</p>
-      <p className="text-body-xs text-text-200">{label}</p>
-      <p className="font-mono text-body-xs text-text-300">{val}</p>
+    <div className="rounded-lg border border-vsds-outline p-3 text-center space-y-1">
+      <p className={`text-vsds-title-lg text-vsds-text-100 ${cls}`}>Ag</p>
+      <p className="text-vsds-body-xs text-vsds-text-200">{label}</p>
+      <p className="font-vsds-mono text-vsds-body-xs text-vsds-text-300">{val}</p>
     </div>
   )
 }
@@ -566,9 +566,9 @@ function RadiusCard({ cssVar, label, cls }: { cssVar: string; label: string; cls
   }, [cssVar])
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className={`h-12 w-full bg-surface-variant-200 border border-outline ${cls}`} />
-      <p className="text-body-xs font-medium text-text-100">{label}</p>
-      <p className="font-mono text-body-xs text-text-300">{val}</p>
+      <div className={`h-12 w-full bg-vsds-surface-variant-200 border border-vsds-outline ${cls}`} />
+      <p className="text-vsds-body-xs font-medium text-vsds-text-100">{label}</p>
+      <p className="font-vsds-mono text-vsds-body-xs text-vsds-text-300">{val}</p>
     </div>
   )
 }
@@ -577,13 +577,13 @@ function ShadowCard({ cssVar, label, cls }: { cssVar: string; label: string; cls
   return (
     <div className="flex flex-col items-center gap-3 p-2">
       <div
-        className={`h-14 w-full rounded-lg bg-surface-100 ${cls}`}
+        className={`h-14 w-full rounded-lg bg-vsds-surface-100 ${cls}`}
         style={{ boxShadow: `var(${cssVar})` }}
       />
       <div className="text-center">
-        <p className="text-body-xs font-medium text-text-100">{label}</p>
+        <p className="text-vsds-body-xs font-medium text-vsds-text-100">{label}</p>
         <Tooltip text={cssVar}>
-          <p className="font-mono text-body-xs text-text-300 truncate max-w-[120px]">{cssVar.replace('--vsds-sys-', '')}</p>
+          <p className="font-vsds-mono text-vsds-body-xs text-vsds-text-300 truncate max-w-[120px]">{cssVar.replace('--vsds-sys-', '')}</p>
         </Tooltip>
       </div>
     </div>
@@ -598,10 +598,10 @@ function OpacityCard({ cssVar, label }: { cssVar: string; label: string }) {
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="relative h-10 w-full">
-        <div className="absolute inset-0 rounded-lg bg-primary" style={{ opacity: `var(${cssVar})` }} />
+        <div className="absolute inset-0 rounded-lg bg-vsds-primary" style={{ opacity: `var(${cssVar})` }} />
       </div>
-      <p className="text-body-xs font-medium text-text-100">{label}</p>
-      <p className="font-mono text-body-xs text-text-300">{val}</p>
+      <p className="text-vsds-body-xs font-medium text-vsds-text-100">{label}</p>
+      <p className="font-vsds-mono text-vsds-body-xs text-vsds-text-300">{val}</p>
     </div>
   )
 }
@@ -614,12 +614,12 @@ function IconSizeCard({ cssVar, label }: { cssVar: string; label: string }) {
   return (
     <div className="flex flex-col items-center gap-1">
       <div
-        className="rounded-md bg-surface-variant-200 border border-outline flex items-center justify-center text-body-xs text-text-200"
+        className="rounded-md bg-vsds-surface-variant-200 border border-vsds-outline flex items-center justify-center text-vsds-body-xs text-vsds-text-200"
         style={{ width: `var(${cssVar})`, height: `var(${cssVar})` }}
       >
         {val}
       </div>
-      <p className="text-body-xs text-text-200">{label}</p>
+      <p className="text-vsds-body-xs text-vsds-text-200">{label}</p>
     </div>
   )
 }
