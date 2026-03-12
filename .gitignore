@@ -139,4 +139,7 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # npm registry credentials injected via CI env vars — .npmrc is tracked without secrets
+
+# direnv local env (contains secrets, never commit)
+.envrc
 src/components/vsds/.vsds-originals/
